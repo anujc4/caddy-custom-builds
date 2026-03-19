@@ -1,4 +1,12 @@
 version: 2
+
+registries:
+  dhi:
+    type: docker-registry
+    url: https://dhi.io
+    username: ${{ secrets.DHI_USERNAME }}
+    password: ${{ secrets.DHI_PASSWORD }}
+
 updates:
   # GitHub Actions
   - package-ecosystem: "github-actions"
@@ -11,6 +19,18 @@ updates:
   # Docker - Dockerfile in caddy-geoblock-crowdsec
   - package-ecosystem: "docker"
     directory: "/caddy-geoblock-crowdsec"
+    registries:
+      - dhi
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
+
+  # Docker - Dockerfile in caddy-geoblock-ip-crowdsec
+  - package-ecosystem: "docker"
+    directory: "/caddy-geoblock-ip-crowdsec"
+    registries:
+      - dhi
     schedule:
       interval: "weekly"
     commit-message:
