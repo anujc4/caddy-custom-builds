@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM dhi.io/golang:1.25-debian13-dev AS builder
+FROM dhi.io/golang:1.26-debian13-dev AS builder
 
 RUN CGO_ENABLED=0 go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 
